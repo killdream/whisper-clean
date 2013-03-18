@@ -81,9 +81,9 @@ module.exports = (whisper) ->
   file-type = (file) ->
     stat = fs.stat-sync file
     switch
-    | stat.is-file      => \file
-    | stat.is-directory => \directory
-    | otherwise         => \other
+    | stat.is-directory! => \directory
+    | stat.is-file!      => \file
+    | otherwise          => \other
     
 
   ### λ remove
@@ -91,9 +91,14 @@ module.exports = (whisper) ->
   #
   # :: String -> ()
   remove = (file) -> switch file-type file
-  | \file      => fs.unlink-sync file
-  | \directory => remove-dir file
-  | \other     => console.warn("Can't remove file \"#file\". It's neither a file nor a directory.")
+    | \file      => do
+                    fs.unlink-sync file
+                    console.info "Removed file #file."
+    | \directory => do
+                    remove-dir file
+                    console.info "Removed directory #file."
+    | \other     => do
+                    console.warn("Can't remove file \"#file\". It's neither a file nor a directory.")
 
 
   ### λ clean
@@ -104,7 +109,7 @@ module.exports = (whisper) ->
     ignore = expand (env.ignore or [])
     files  = filter-descendants ignore, (expand (env.files or []))
     files.for-each remove
-    console.info "All cleaned up."
+    console.log "All cleaned up."
 
 
   ### -- Tasks ---------------------------------------------------------
