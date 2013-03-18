@@ -93,10 +93,10 @@ module.exports = (whisper) ->
   remove = (file) -> switch file-type file
     | \file      => do
                     fs.unlink-sync file
-                    console.info "Removed file #file."
+                    console.info "Removed file: #file."
     | \directory => do
                     remove-dir file
-                    console.info "Removed directory #file."
+                    console.info "Removed directory: #file."
     | \other     => do
                     console.warn("Can't remove file \"#file\". It's neither a file nor a directory.")
 
