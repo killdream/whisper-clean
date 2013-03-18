@@ -1,0 +1,32 @@
+{
+  "name": "whisper-clean",
+  "version": "0.1.0",
+  "description": "Removes build artifacts and backup files from a project.",
+  "main": "./lib/index.js",
+  "devDependencies": {
+    "LiveScript": "~1.1.1"
+  },
+  "scripts": {
+    "cc": "./node_modules/.bin/lsc -o lib -c src/*.ls",
+    "test-cc": "./node_modules/.bin/lsc -o lib-test -c test/*.ls",
+    "pretest": "npm run-script cc && npm run-script test-cc",
+    "test": "./node_modules/.bin/mocha lib-test/*.js",
+    "prepublish": "npm run-script cc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/killdream/whisper-clean.git"
+  },
+  "keywords": [
+    "clean",
+    "whisper-plugin"
+  ],
+  "author": "Quildreen \"Sorella\" Motta <quildreen@gmail.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "wrench": "~1.4.4",
+    "glob": "~3.1.21",
+    "prelude-ls": "~0.6.0"
+  }
+}
