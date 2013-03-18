@@ -148,4 +148,4 @@ module.exports = (whisper) ->
                      require('whisper-clean')(whisper)
                    }
                """
-             , clean env.clean
+             , (env) -> clean env.clean
