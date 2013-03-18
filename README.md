@@ -10,10 +10,12 @@ Define a list of patterns that should be cleaned up in your `.whisper` file.
 ```js
 module.exports = function(whisper) {
   whisper.configure({
-    clean: ['build', '~*', '.#*']
+    clean: { files: ['build', '*.orig']
+           , ignore: ['node_modules']
+           }
   })
 
-  require('whisper-clean')
+  require('whisper-clean')(whisper)
 }
 ```
 
