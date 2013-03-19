@@ -26,6 +26,11 @@ whisper clean
 ```
 
 
+### Documentation
+
+Just invoke `whisper help clean` to show the manual page for the `clean` task.
+
+
 ### Installing
 
 Just grab it from NPM:
