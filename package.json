@@ -1,6 +1,6 @@
 {
   "name": "whisper-clean",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Removes build artifacts and backup files from a project.",
   "main": "./lib/index.js",
   "devDependencies": {
